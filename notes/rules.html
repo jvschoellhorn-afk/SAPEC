@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Business Rules & Event Reasons – C_THR81 study notes</title>
+<meta name="description" content="Study notes, common traps and hands-on practice tasks on Business Rules & Event Reasons for the C_THR81 Employee Central Core certification.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d6b86'/%3E%3Cpath d='M9 17l5 5 9-11' stroke='white' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top plain">
+  <div class="wrap">
+    <div class="topin">
+      <a class="brand" href="../index.html"><h1>EC Core Exam Trainer</h1><span class="code">C_THR81</span></a>
+      <nav class="site" aria-label="Site"><a href="../index.html">Trainer</a><a href="../guide.html">Exam guide</a><a href="../notes/index.html" aria-current="page">Study notes</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="main">
+  <section class="stack">
+    <p class="crumbs"><a href="index.html">Study notes</a> / Business Rules & Event Reasons</p>
+    <h2>Business Rules & Event Reasons</h2>
+    <p class="lede">Business rules default, derive, validate and trigger. The exam (and every project) depends on putting the right rule on the right event.</p>
+    <div class="row"><a class="btn primary" href="../index.html#quiz=rules">Quiz this topic</a></div>
+  </section>
+  <article class="prose">
+    <h2>Key concepts</h2>
+    <ul><li><b>Rule events.</b> <code>onInit</code> when a page or block loads (defaulting), <code>onChange</code> when a specific field changes, <code>onSave</code> when the record is saved (derivations, validations), <code>onView</code> to control display, <code>saveAlert</code> to create alerts with an alert date, <code>onPostSave</code> after saving.</li><li><b>Rule scenarios.</b> Rules are created in Configure Business Rules from a scenario, e.g. Basic, Event Reason Derivation or Trigger Workflows. The scenario decides which outputs are allowed.</li><li><b>Assigning rules.</b> Employee data rules are assigned to HRIS elements or fields in Manage Business Configuration. Rules for MDF objects are assigned in Configure Object Definitions.</li><li><b>Events and event reasons.</b> Events (Hire, Data Change, Termination…) are picklist values. Event reasons are foundation objects linked to one event; one event can have many reasons.</li><li><b>Event reason derivation.</b> An onSave rule on <code>jobInfo</code> (and <code>compInfo</code>) that sets the event reason from what changed, so managers don't pick it.</li><li><b>Detecting a change.</b> Compare a field with its <em>Previous Value</em>, e.g. <code>Job Information Model.Location</code> ≠ <code>Job Information Model.Previous Value.Location</code>.</li><li><b>Workflow derivation.</b> A Trigger Workflows rule decides which approval workflow starts. It is assigned onSave to the HRIS element.</li></ul>
+    <h2>Common traps</h2>
+    <ul><li>Event reason and workflow derivation rules are onSave on the element, not onChange on a field.</li><li>onView hides or shows fields; it does not change data.</li><li>Checking that a field <em>is not null</em> doesn't tell you it changed — use Previous Value.</li></ul>
+    <h2>Practice tasks</h2>
+    <p>Do these in a practice or demo instance. Each one ends with how to prove the outcome, just like in the exam.</p>
+  </article>
+  <section class="tasks"><div class="task"><h3>Derive the event reason for a transfer</h3><p><b>Outcome:</b> When only Location changes in Job Information, the event reason is set to <em>Transfer</em> automatically.</p>
+      <details><summary>Hints</summary><ol><li>Create an Event Reason Derivation rule.</li><li>Compare Location with its previous value.</li><li>Assign it onSave to jobInfo in Manage Business Configuration.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Change an employee's location without choosing a reason, save, and show the event reason in Job History.</p></div><div class="task"><h3>Fill job data from the job classification</h3><p><b>Outcome:</b> Choosing a Job Classification fills Job Title and Pay Grade.</p>
+      <details><summary>Hints</summary><ol><li>Basic rule, onChange on the Job Classification field.</li><li>Set values from the Job Classification object.</li></ol></details>
+      <p class="small"><b>Prove it:</b> In Change Job and Compensation Info, pick a classification and show the fields filling before you save.</p></div><div class="task"><h3>Contract end reminder</h3><p><b>Outcome:</b> HR gets an alert 30 days before a fixed-term contract ends.</p>
+      <details><summary>Hints</summary><ol><li>Use a saveAlert rule with an alert date of contract end minus 30 days.</li><li>Assign it to the element that holds the contract end date.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Save a contract with an end date and show the alert record or the alert in the HR user's view.</p></div></section>
+  <nav class="pager" aria-label="Topic navigation"><a href="datamodel.html">← Data Models & MDF</a><a href="fo.html">Foundation Objects →</a></nav>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>An independent study aid for the SAP Certified – SAP SuccessFactors Employee Central Core and Position Management exam (C_THR81). Not affiliated with or endorsed by SAP. The practice questions are written from public SAP documentation and are not official exam questions.</p>
+    <p>SAP and SAP SuccessFactors are trademarks or registered trademarks of SAP SE in Germany and other countries.</p>
+  </div>
+</footer>
+</body>
+</html>

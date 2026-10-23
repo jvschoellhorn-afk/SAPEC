@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Foundation Objects – C_THR81 study notes</title>
+<meta name="description" content="Study notes, common traps and hands-on practice tasks on Foundation Objects for the C_THR81 Employee Central Core certification.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d6b86'/%3E%3Cpath d='M9 17l5 5 9-11' stroke='white' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top plain">
+  <div class="wrap">
+    <div class="topin">
+      <a class="brand" href="../index.html"><h1>EC Core Exam Trainer</h1><span class="code">C_THR81</span></a>
+      <nav class="site" aria-label="Site"><a href="../index.html">Trainer</a><a href="../guide.html">Exam guide</a><a href="../notes/index.html" aria-current="page">Study notes</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="main">
+  <section class="stack">
+    <p class="crumbs"><a href="index.html">Study notes</a> / Foundation Objects</p>
+    <h2>Foundation Objects</h2>
+    <p class="lede">Foundation objects describe the organization, jobs and pay of a company. They populate the fields managers pick from in employee data.</p>
+    <div class="row"><a class="btn primary" href="../index.html#quiz=fo">Quiz this topic</a></div>
+  </section>
+  <article class="prose">
+    <h2>Key concepts</h2>
+    <ul><li><b>Organization structure.</b> Legal Entity, Business Unit, Division, Department, Location, Cost Center and similar objects describe where people work.</li><li><b>Job structure.</b> Job Classification (with country-specific children, e.g. for FLSA status in the US) and Job Function describe what people do.</li><li><b>Pay structure.</b> Pay Component, Pay Component Group, Frequency, Pay Grade and Pay Range. Pay ranges are typically defined per legal entity, pay grade and geozone and are used e.g. for compa-ratio.</li><li><b>Associations.</b> Associations filter values: once a Division is chosen, only the Departments associated with it can be selected.</li><li><b>Legacy vs. MDF.</b> Legacy foundation objects are maintained in Manage Organization, Pay and Job Structures. MDF foundation objects are maintained in Manage Data and imported via Import and Export Data.</li><li><b>Other foundation objects.</b> Event Reason, Workflow (approval steps and approvers) and Dynamic Role are also foundation objects.</li><li><b>Import order.</b> Import objects that others refer to first (e.g. Legal Entity before objects associated with it), and foundation data before employee data.</li></ul>
+    <h2>Common traps</h2>
+    <ul><li>Event Reason is a foundation object; Event is a picklist.</li><li>Employee data is imported with Import Employee Data, MDF objects with Import and Export Data.</li><li>Importing children before their parents fails on the references.</li></ul>
+    <h2>Practice tasks</h2>
+    <p>Do these in a practice or demo instance. Each one ends with how to prove the outcome, just like in the exam.</p>
+  </article>
+  <section class="tasks"><div class="task"><h3>Filtered org picking</h3><p><b>Outcome:</b> In Job Information, choosing a Division only offers its own Departments.</p>
+      <details><summary>Hints</summary><ol><li>Check the association between Department and Division in the object definition.</li><li>Create a Division and two Departments assigned to it in Manage Data.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Edit an employee's Job Information, select the Division and show the filtered Department list.</p></div><div class="task"><h3>A pay range that fits</h3><p><b>Outcome:</b> Employees in pay grade GR-05 in your German legal entity get the correct pay range and compa-ratio.</p>
+      <details><summary>Hints</summary><ol><li>Create or check the Geozone, Pay Grade and Pay Range records.</li><li>Link the pay range to legal entity, pay grade and geozone.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Open Compensation Information of a matching employee and show the range and compa-ratio.</p></div><div class="task"><h3>Country-specific job data</h3><p><b>Outcome:</b> A job classification carries a US-specific attribute.</p>
+      <details><summary>Hints</summary><ol><li>Maintain the country-specific child of the Job Classification record.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Show the job classification record with its US child data in Manage Data.</p></div></section>
+  <nav class="pager" aria-label="Topic navigation"><a href="rules.html">← Business Rules & Event Reasons</a><a href="empdata.html">Employee Data & Imports →</a></nav>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>An independent study aid for the SAP Certified – SAP SuccessFactors Employee Central Core and Position Management exam (C_THR81). Not affiliated with or endorsed by SAP. The practice questions are written from public SAP documentation and are not official exam questions.</p>
+    <p>SAP and SAP SuccessFactors are trademarks or registered trademarks of SAP SE in Germany and other countries.</p>
+  </div>
+</footer>
+</body>
+</html>

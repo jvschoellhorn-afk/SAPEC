@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Data Models & MDF – C_THR81 study notes</title>
+<meta name="description" content="Study notes, common traps and hands-on practice tasks on Data Models & MDF for the C_THR81 Employee Central Core certification.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d6b86'/%3E%3Cpath d='M9 17l5 5 9-11' stroke='white' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top plain">
+  <div class="wrap">
+    <div class="topin">
+      <a class="brand" href="../index.html"><h1>EC Core Exam Trainer</h1><span class="code">C_THR81</span></a>
+      <nav class="site" aria-label="Site"><a href="../index.html">Trainer</a><a href="../guide.html">Exam guide</a><a href="../notes/index.html" aria-current="page">Study notes</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="main">
+  <section class="stack">
+    <p class="crumbs"><a href="index.html">Study notes</a> / Data Models & MDF</p>
+    <h2>Data Models & MDF</h2>
+    <p class="lede">Employee Central data is defined by data models (XML, maintained mostly through UIs today) and by the Metadata Framework (MDF) for generic objects.</p>
+    <div class="row"><a class="btn primary" href="../index.html#quiz=datamodel">Quiz this topic</a></div>
+  </section>
+  <article class="prose">
+    <h2>Key concepts</h2>
+    <ul><li><b>Succession Data Model.</b> Defines person and employment HRIS elements such as <code>personalInfo</code>, <code>jobInfo</code> and <code>compInfo</code>, their fields, labels and visibility.</li><li><b>Country/Region-specific Succession Data Model.</b> Adds country-specific fields and formats, e.g. a German home address format or local personal data fields.</li><li><b>Corporate Data Model.</b> Defines legacy (non-MDF) foundation objects. Its country/region-specific variant adds local fields to them.</li><li><b>Manage Business Configuration (BCUI).</b> The Admin Center UI to maintain HRIS elements and fields of the Succession Data Model, including labels, visibility, required flags and rule assignments, without editing XML.</li><li><b>Field attributes.</b> <code>visibility</code> is <code>none</code>, <code>view</code> or <code>edit</code>. Whether a field is mandatory is a separate <code>required</code> attribute. Permissions still decide what a given user sees.</li><li><b>MDF basics.</b> Configure Object Definitions defines the structure of an object. Manage Data creates and edits records. Custom objects and fields get the prefix <code>cust_</code>.</li><li><b>Effective dating.</b> MDF objects can be not effective dated, effective dated, or take their dating <em>From Parent</em> (used for children in a composite association).</li><li><b>Associations.</b> A composite association makes the child part of the parent: created, edited and deleted together. A valid-when association links two independent objects, e.g. to filter values.</li></ul>
+    <h2>Common traps</h2>
+    <ul><li><code>mandatory</code> is not a visibility value.</li><li>Defining an object (Configure Object Definitions) and maintaining its records (Manage Data) are different tools.</li><li>Country-specific employee fields go into the country-specific <em>Succession</em> data model, not the Corporate one.</li></ul>
+    <h2>Practice tasks</h2>
+    <p>Do these in a practice or demo instance. Each one ends with how to prove the outcome, just like in the exam.</p>
+  </article>
+  <section class="tasks"><div class="task"><h3>A new field on Job Information</h3><p><b>Outcome:</b> Job Information has a new custom text field <em>Shift Group</em> that is editable and optional.</p>
+      <details><summary>Hints</summary><ol><li>Open Manage Business Configuration and the jobInfo element.</li><li>Enable an unused custom-string field, set its label, visibility and required flag.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Open an employee's Job Information edit screen and show the new field. If you can't see it, check permissions next.</p></div><div class="task"><h3>Parent-child MDF object</h3><p><b>Outcome:</b> A custom object <em>Training Plan</em> exists with a child object <em>Training Item</em> that is maintained inside each plan.</p>
+      <details><summary>Hints</summary><ol><li>Create the child object first with effective dating From Parent.</li><li>Create the parent with a composite association to the child.</li><li>Secure both if HR must permission them.</li></ol></details>
+      <p class="small"><b>Prove it:</b> In Manage Data, create one plan with two items, then show that both items are part of the plan record.</p></div><div class="task"><h3>Country-specific personal data</h3><p><b>Outcome:</b> A field that only exists for employees in one country appears in Personal Information for that country.</p>
+      <details><summary>Hints</summary><ol><li>Look at the country/region-specific configuration of personalInfo in BCUI.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Compare the Personal Information screen of an employee in that country with one elsewhere.</p></div></section>
+  <nav class="pager" aria-label="Topic navigation"><a href="rbp.html">← Security & Role-Based Permissions</a><a href="rules.html">Business Rules & Event Reasons →</a></nav>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>An independent study aid for the SAP Certified – SAP SuccessFactors Employee Central Core and Position Management exam (C_THR81). Not affiliated with or endorsed by SAP. The practice questions are written from public SAP documentation and are not official exam questions.</p>
+    <p>SAP and SAP SuccessFactors are trademarks or registered trademarks of SAP SE in Germany and other countries.</p>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Security & Role-Based Permissions – C_THR81 study notes</title>
+<meta name="description" content="Study notes, common traps and hands-on practice tasks on Security & Role-Based Permissions for the C_THR81 Employee Central Core certification.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d6b86'/%3E%3Cpath d='M9 17l5 5 9-11' stroke='white' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top plain">
+  <div class="wrap">
+    <div class="topin">
+      <a class="brand" href="../index.html"><h1>EC Core Exam Trainer</h1><span class="code">C_THR81</span></a>
+      <nav class="site" aria-label="Site"><a href="../index.html">Trainer</a><a href="../guide.html">Exam guide</a><a href="../notes/index.html" aria-current="page">Study notes</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="main">
+  <section class="stack">
+    <p class="crumbs"><a href="index.html">Study notes</a> / Security & Role-Based Permissions</p>
+    <h2>Security & Role-Based Permissions</h2>
+    <p class="lede">Role-based permissions (RBP) answer three questions: <em>who</em> gets access (permission group), <em>what</em> they may do (permission role) and <em>on whom</em> (target population).</p>
+    <div class="row"><a class="btn primary" href="../index.html#quiz=rbp">Quiz this topic</a></div>
+  </section>
+  <article class="prose">
+    <h2>Key concepts</h2>
+    <ul><li><b>Permission group.</b> A set of users defined by criteria such as department or location. Groups built on criteria are dynamic: when an employee's data changes, membership updates automatically. Maintained in Manage Permission Groups.</li><li><b>Permission role.</b> A collection of permissions, e.g. view and edit of Job Information fields. Maintained in Manage Permission Roles.</li><li><b>Granting a role.</b> A role is granted to a granted population (a permission group, everyone, or a relationship such as managers or HR managers) together with a target population: the users the granted users can act on.</li><li><b>Relationship-based access.</b> Roles can be granted to managers, HR managers, matrix managers and custom managers (e.g. a second manager), with target population defined as their reports, optionally several levels deep.</li><li><b>Exclude self.</b> The option to exclude granted users from having the permission access to themselves stops, for example, a manager from editing their own salary through the manager role.</li><li><b>Permission categories.</b> Field-level permissions for effective-dated entities such as Job Information or Compensation Information sit under <em>Employee Central Effective Dated Entities</em>. Non-effective-dated entities sit under <em>Employee Data</em>.</li><li><b>Securing MDF objects.</b> A custom MDF object only appears in permission roles after you set <code>Secured = Yes</code> and pick a permission category in Configure Object Definitions.</li><li><b>Troubleshooting.</b> <em>View User Permission</em> shows which permissions a user has and through which roles they were granted.</li></ul>
+    <h2>Common traps</h2>
+    <ul><li>Granted population receives the permission; target population is who they act on. Exam scenarios like to swap the two.</li><li>A field you set to <code>edit</code> in the data model is still invisible if no role grants view or edit on it.</li><li>A new custom MDF object is not permissioned until it is secured.</li></ul>
+    <h2>Practice tasks</h2>
+    <p>Do these in a practice or demo instance. Each one ends with how to prove the outcome, just like in the exam.</p>
+  </article>
+  <section class="tasks"><div class="task"><h3>HR for one country</h3><p><b>Outcome:</b> Members of a new group <em>HR Germany</em> can view and edit Job Information of all employees in German legal entities, and nobody else gets this access.</p>
+      <details><summary>Hints</summary><ol><li>Create a dynamic permission group by criteria (e.g. legal entity or country).</li><li>Create a role with Job Information view and edit under Employee Central Effective Dated Entities.</li><li>Grant it to the group with a target population of German employees.</li></ol></details>
+      <p class="small"><b>Prove it:</b> In View User Permission, pick a group member and show the Job Information permission and the role it comes from. Check that a non-member does not have it.</p></div><div class="task"><h3>Managers without self-service salary edits</h3><p><b>Outcome:</b> Managers can edit compensation of their direct reports but not their own.</p>
+      <details><summary>Hints</summary><ol><li>Grant the role to managers with target population of direct reports.</li><li>Use the option that excludes granted users from accessing themselves.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Proxy as a manager (if allowed) or use View User Permission to compare the manager's access on a report and on themselves.</p></div><div class="task"><h3>Permission a custom object</h3><p><b>Outcome:</b> A custom MDF object can be viewed by HR only.</p>
+      <details><summary>Hints</summary><ol><li>Secure the object and give it a permission category in Configure Object Definitions.</li><li>Add view/edit for the object to the HR role.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Show the object in the permission role and open a record in Manage Data as an HR user.</p></div></section>
+  <nav class="pager" aria-label="Topic navigation"><a href="platform.html">← Platform & Administration</a><a href="datamodel.html">Data Models & MDF →</a></nav>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>An independent study aid for the SAP Certified – SAP SuccessFactors Employee Central Core and Position Management exam (C_THR81). Not affiliated with or endorsed by SAP. The practice questions are written from public SAP documentation and are not official exam questions.</p>
+    <p>SAP and SAP SuccessFactors are trademarks or registered trademarks of SAP SE in Germany and other countries.</p>
+  </div>
+</footer>
+</body>
+</html>

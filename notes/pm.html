@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Position Management – C_THR81 study notes</title>
+<meta name="description" content="Study notes, common traps and hands-on practice tasks on Position Management for the C_THR81 Employee Central Core certification.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d6b86'/%3E%3Cpath d='M9 17l5 5 9-11' stroke='white' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top plain">
+  <div class="wrap">
+    <div class="topin">
+      <a class="brand" href="../index.html"><h1>EC Core Exam Trainer</h1><span class="code">C_THR81</span></a>
+      <nav class="site" aria-label="Site"><a href="../index.html">Trainer</a><a href="../guide.html">Exam guide</a><a href="../notes/index.html" aria-current="page">Study notes</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="main">
+  <section class="stack">
+    <p class="crumbs"><a href="index.html">Study notes</a> / Position Management</p>
+    <h2>Position Management</h2>
+    <p class="lede">Positions let an organization manage headcount independently of the people in it. Expect setup, hierarchy and synchronization topics.</p>
+    <div class="row"><a class="btn primary" href="../index.html#quiz=pm">Quiz this topic</a></div>
+  </section>
+  <article class="prose">
+    <h2>Key concepts</h2>
+    <ul><li><b>Position hierarchy.</b> Each position can reference a parent position. The resulting hierarchy is shown in the Position Org Chart with incumbents and vacancies.</li><li><b>Position Management Settings.</b> An MDF object maintained in Manage Data that holds global settings such as synchronization behavior.</li><li><b>Synchronization.</b> Position attributes (e.g. department) can be copied to the incumbent's Job Information. It is enabled in Position Management Settings and uses a business rule.</li><li><b>Position control.</b> With full position control, positions are planned and created first and every employee is assigned to an existing position.</li><li><b>To Be Hired (TBH).</b> Marks a vacant position that should be filled; with Recruiting integration it can start a job requisition.</li><li><b>Right to Return.</b> Keeps the link to an employee's previous position so they can return after a temporary assignment or leave.</li><li><b>Mass changes.</b> Mass changes for positions update a field across many positions at once; an MDF import is the alternative.</li></ul>
+    <h2>Common traps</h2>
+    <ul><li>The position hierarchy comes from the parent position, not from the manager field in Job Information.</li><li>Synchronization needs both the setting and a rule.</li><li>Position Management Settings is maintained in Manage Data, not in Provisioning.</li></ul>
+    <h2>Practice tasks</h2>
+    <p>Do these in a practice or demo instance. Each one ends with how to prove the outcome, just like in the exam.</p>
+  </article>
+  <section class="tasks"><div class="task"><h3>Build a small hierarchy</h3><p><b>Outcome:</b> Three positions exist: a team lead and two team members reporting to it.</p>
+      <details><summary>Hints</summary><ol><li>Create the positions in the Position Org Chart or Manage Data.</li><li>Set the parent position on the two team-member positions.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Show the three positions in the Position Org Chart.</p></div><div class="task"><h3>Hire into a position</h3><p><b>Outcome:</b> A new employee is hired into a vacant position, and the position shows them as incumbent.</p>
+      <details><summary>Hints</summary><ol><li>Mark the position as To Be Hired.</li><li>Select the position in Add New Employee.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Show the incumbent in the Position Org Chart and the position in the employee's Job Information.</p></div><div class="task"><h3>Position changes reach Job Information</h3><p><b>Outcome:</b> Changing the department of a position updates the incumbent's Job Information.</p>
+      <details><summary>Hints</summary><ol><li>Check synchronization in Position Management Settings.</li><li>Check or create the synchronization rule.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Change the department on the position and show the new Job Information record of the incumbent.</p></div></section>
+  <nav class="pager" aria-label="Topic navigation"><a href="workflow.html">← Transactions & Workflows</a><a href="../guide.html">Exam guide →</a></nav>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>An independent study aid for the SAP Certified – SAP SuccessFactors Employee Central Core and Position Management exam (C_THR81). Not affiliated with or endorsed by SAP. The practice questions are written from public SAP documentation and are not official exam questions.</p>
+    <p>SAP and SAP SuccessFactors are trademarks or registered trademarks of SAP SE in Germany and other countries.</p>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Transactions & Workflows – C_THR81 study notes</title>
+<meta name="description" content="Study notes, common traps and hands-on practice tasks on Transactions & Workflows for the C_THR81 Employee Central Core certification.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d6b86'/%3E%3Cpath d='M9 17l5 5 9-11' stroke='white' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top plain">
+  <div class="wrap">
+    <div class="topin">
+      <a class="brand" href="../index.html"><h1>EC Core Exam Trainer</h1><span class="code">C_THR81</span></a>
+      <nav class="site" aria-label="Site"><a href="../index.html">Trainer</a><a href="../guide.html">Exam guide</a><a href="../notes/index.html" aria-current="page">Study notes</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="main">
+  <section class="stack">
+    <p class="crumbs"><a href="index.html">Study notes</a> / Transactions & Workflows</p>
+    <h2>Transactions & Workflows</h2>
+    <p class="lede">Approval workflows put people between a change and its effect. Setting one up means defining the steps, deciding who approves, and triggering it at the right time.</p>
+    <div class="row"><a class="btn primary" href="../index.html#quiz=workflow">Quiz this topic</a></div>
+  </section>
+  <article class="prose">
+    <h2>Key concepts</h2>
+    <ul><li><b>Workflow object.</b> The Workflow foundation object defines approval steps, approver types, contributors and CC roles.</li><li><b>Approver types.</b> Role, Dynamic Role, Dynamic Group, Position and Position Relationship.</li><li><b>Role codes.</b> E = employee, EM = employee's manager, EMM = manager's manager, EH = employee's HR representative.</li><li><b>Dynamic role vs. dynamic group.</b> A dynamic role resolves to a person or position from the employee's data, e.g. the HR partner for a location. With a dynamic group, any one member of the group can approve.</li><li><b>Contributors and CC.</b> Contributors are notified during the workflow and can comment but don't approve. CC roles are notified once it's complete.</li><li><b>Approver edit options.</b> No Edit, Edit with Route Change, Edit without Route Change.</li><li><b>Triggering.</b> A Trigger Workflows rule assigned onSave to the HRIS element decides which workflow starts.</li><li><b>Admin tools.</b> Manage Workflow Requests lets admins find pending requests and reassign, approve or lock them, e.g. when an approver has left.</li></ul>
+    <h2>Common traps</h2>
+    <ul><li>A dynamic group needs one approval, not all members'.</li><li>Workflows don't start by themselves — a derivation rule triggers them.</li><li>CC roles don't see the request until it's completed.</li></ul>
+    <h2>Practice tasks</h2>
+    <p>Do these in a practice or demo instance. Each one ends with how to prove the outcome, just like in the exam.</p>
+  </article>
+  <section class="tasks"><div class="task"><h3>Two-step promotion approval</h3><p><b>Outcome:</b> A promotion entered by a manager needs approval from the manager's manager and then from HR for the employee's country.</p>
+      <details><summary>Hints</summary><ol><li>Create a workflow with step 1 = EMM and step 2 = a dynamic group or dynamic role for HR.</li><li>Create a Trigger Workflows rule for the promotion event reason and assign it onSave to jobInfo.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Submit a promotion, show the pending request with both steps, approve it and show the change in Job History.</p></div><div class="task"><h3>Approval for address changes</h3><p><b>Outcome:</b> Address changes made in self-service go to HR for approval.</p>
+      <details><summary>Hints</summary><ol><li>Assign a workflow derivation rule onSave to the homeAddress element.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Change an address as the employee and show the pending request.</p></div><div class="task"><h3>Unstick a request</h3><p><b>Outcome:</b> A pending request whose approver left is moved to a new approver.</p>
+      <details><summary>Hints</summary><ol><li>Use Manage Workflow Requests to find and reassign it.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Show the request with the new approver in the workflow details.</p></div></section>
+  <nav class="pager" aria-label="Topic navigation"><a href="empdata.html">← Employee Data & Imports</a><a href="pm.html">Position Management →</a></nav>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>An independent study aid for the SAP Certified – SAP SuccessFactors Employee Central Core and Position Management exam (C_THR81). Not affiliated with or endorsed by SAP. The practice questions are written from public SAP documentation and are not official exam questions.</p>
+    <p>SAP and SAP SuccessFactors are trademarks or registered trademarks of SAP SE in Germany and other countries.</p>
+  </div>
+</footer>
+</body>
+</html>

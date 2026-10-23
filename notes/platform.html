@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Platform & Administration – C_THR81 study notes</title>
+<meta name="description" content="Study notes, common traps and hands-on practice tasks on Platform & Administration for the C_THR81 Employee Central Core certification.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d6b86'/%3E%3Cpath d='M9 17l5 5 9-11' stroke='white' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top plain">
+  <div class="wrap">
+    <div class="topin">
+      <a class="brand" href="../index.html"><h1>EC Core Exam Trainer</h1><span class="code">C_THR81</span></a>
+      <nav class="site" aria-label="Site"><a href="../index.html">Trainer</a><a href="../guide.html">Exam guide</a><a href="../notes/index.html" aria-current="page">Study notes</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="main">
+  <section class="stack">
+    <p class="crumbs"><a href="index.html">Study notes</a> / Platform & Administration</p>
+    <h2>Platform & Administration</h2>
+    <p class="lede">Where configuration lives, which tool does what, and how data reaches the rest of SAP SuccessFactors. In a hands-on exam, knowing <em>which tool owns an outcome</em> saves more time than anything else.</p>
+    <div class="row"><a class="btn primary" href="../index.html#quiz=platform">Quiz this topic</a></div>
+  </section>
+  <article class="prose">
+    <h2>Key concepts</h2>
+    <ul><li><b>Admin Center vs. Provisioning.</b> Admin Center is the customer's day-to-day administration area (permissions, picklists, business rules, data). Provisioning is the back end, restricted to SAP and certified partner consultants: data model XML uploads, company settings and scheduled jobs such as HRIS Sync.</li><li><b>Finding tools fast.</b> Use the action search in the header or the tool search in Admin Center and type the tool name, e.g. <code>Manage Permission Roles</code>. Bookmark it as a favourite if you use it often.</li><li><b>Check Tool.</b> Runs validation checks on the configuration, shows the issues found and offers a Quick Fix for some of them. It can also prepare information for an SAP support incident.</li><li><b>Upgrade Center.</b> Lists optional upgrades and new features that an administrator can review and apply in the instance.</li><li><b>Instance Synchronization Toolkit.</b> Copies configuration artifacts such as permission roles, MDF object definitions and picklists from a source instance (e.g. test) to a target instance (e.g. production).</li><li><b>Picklist Center.</b> The central tool to create picklists and maintain their values, labels, status and parent-child relationships for cascading picklists.</li><li><b>HRIS Sync.</b> A scheduled job that copies Employee Central data (e.g. from Job Information) into the basic user data that other modules such as Performance & Goals use. Which fields are synced is controlled by HRIS sync mappings in the Succession Data Model.</li></ul>
+    <h2>Common traps</h2>
+    <ul><li>Data model XML upload and scheduled-job creation happen in Provisioning, not Admin Center.</li><li>Picklists are maintained in Picklist Center, not in the data model.</li><li>HRIS Sync runs from Employee Central to user data, not the other way round.</li></ul>
+    <h2>Practice tasks</h2>
+    <p>Do these in a practice or demo instance. Each one ends with how to prove the outcome, just like in the exam.</p>
+  </article>
+  <section class="tasks"><div class="task"><h3>Health check before you start</h3><p><b>Outcome:</b> You know which Employee Central configuration checks fail in your instance and have fixed at least one with a Quick Fix.</p>
+      <details><summary>Hints</summary><ol><li>Open the Check Tool via the action search.</li><li>Filter on the Employee Central application and run the checks.</li><li>Open a failed check, read the details and apply the Quick Fix if one is offered.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Re-run the same check. It now passes, or you can explain why the remaining failure is expected.</p></div><div class="task"><h3>A new cascading picklist</h3><p><b>Outcome:</b> A picklist <code>WorkSchedulePattern</code> with three values exists, and each value is shown only for its parent value in a second picklist.</p>
+      <details><summary>Hints</summary><ol><li>Create both picklists in Picklist Center.</li><li>Give each child value a parent picklist value.</li><li>Keep the values Active.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Open the picklist in Picklist Center and show the parent values next to each child value.</p></div><div class="task"><h3>Find what's new</h3><p><b>Outcome:</b> You can name two optional features currently offered for Employee Central in your instance and what each one changes.</p>
+      <details><summary>Hints</summary><ol><li>Open Upgrade Center.</li><li>Read the detail page of an Employee Central upgrade before applying anything.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Write down the two feature names and whether they can be undone after applying.</p></div></section>
+  <nav class="pager" aria-label="Topic navigation"><span></span><a href="rbp.html">Security & Role-Based Permissions →</a></nav>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>An independent study aid for the SAP Certified – SAP SuccessFactors Employee Central Core and Position Management exam (C_THR81). Not affiliated with or endorsed by SAP. The practice questions are written from public SAP documentation and are not official exam questions.</p>
+    <p>SAP and SAP SuccessFactors are trademarks or registered trademarks of SAP SE in Germany and other countries.</p>
+  </div>
+</footer>
+</body>
+</html>

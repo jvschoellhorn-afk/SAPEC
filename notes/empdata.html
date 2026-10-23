@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Employee Data & Imports – C_THR81 study notes</title>
+<meta name="description" content="Study notes, common traps and hands-on practice tasks on Employee Data & Imports for the C_THR81 Employee Central Core certification.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d6b86'/%3E%3Cpath d='M9 17l5 5 9-11' stroke='white' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top plain">
+  <div class="wrap">
+    <div class="topin">
+      <a class="brand" href="../index.html"><h1>EC Core Exam Trainer</h1><span class="code">C_THR81</span></a>
+      <nav class="site" aria-label="Site"><a href="../index.html">Trainer</a><a href="../guide.html">Exam guide</a><a href="../notes/index.html" aria-current="page">Study notes</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="main">
+  <section class="stack">
+    <p class="crumbs"><a href="index.html">Study notes</a> / Employee Data & Imports</p>
+    <h2>Employee Data & Imports</h2>
+    <p class="lede">How employee records are structured, how they change over time, and how to load them in bulk.</p>
+    <div class="row"><a class="btn primary" href="../index.html#quiz=empdata">Quiz this topic</a></div>
+  </section>
+  <article class="prose">
+    <h2>Key concepts</h2>
+    <ul><li><b>Person vs. employment.</b> Personal information, addresses and national ID belong to the person. Job, compensation and employment details belong to an employment, so one person can have several employments.</li><li><b>Effective dating.</b> Job Information, Compensation Information, Personal Information and Addresses are effective dated and keep history. Email, phone and National ID are not.</li><li><b>Hiring.</b> Add New Employee runs a duplicate check (name, date of birth, national ID) to avoid duplicate persons and support rehires.</li><li><b>Changing data.</b> Managers start job changes such as promotions through Take Action → Change Job and Compensation Info on the employee's profile.</li><li><b>Import order.</b> The Basic Import (user data) comes first; other employee imports such as Biographical Information, Employment Details and Job History depend on it.</li><li><b>Full Purge vs. Incremental.</b> Full Purge replaces the existing records of that entity for the employees in the file. Incremental Load adds or updates records.</li><li><b>Keeping values.</b> In an incremental import, <code>&amp;&amp;NO_OVERWRITE&amp;&amp;</code> keeps a field's current value instead of overwriting it.</li></ul>
+    <h2>Common traps</h2>
+    <ul><li>Full Purge only affects the employees in the file — but for them it replaces all records of that entity.</li><li>An empty cell in an incremental import is not the same as <code>&amp;&amp;NO_OVERWRITE&amp;&amp;</code>.</li><li>Use Import Employee Data for employee entities, Import and Export Data for MDF objects.</li></ul>
+    <h2>Practice tasks</h2>
+    <p>Do these in a practice or demo instance. Each one ends with how to prove the outcome, just like in the exam.</p>
+  </article>
+  <section class="tasks"><div class="task"><h3>Hire end to end</h3><p><b>Outcome:</b> A new employee exists with personal data, job data and compensation, effective on the first of next month.</p>
+      <details><summary>Hints</summary><ol><li>Use Add New Employee.</li><li>Watch for the duplicate check.</li><li>Complete job and compensation blocks.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Open the profile and show Job History with the Hire event on the right date.</p></div><div class="task"><h3>Bulk update without data loss</h3><p><b>Outcome:</b> Twenty employees get a new cost center from a file, while their other job fields stay unchanged.</p>
+      <details><summary>Hints</summary><ol><li>Download the Job History template from Import Employee Data.</li><li>Use Incremental Load and <code>&amp;&amp;NO_OVERWRITE&amp;&amp;</code> for fields you don't change.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Open Job History of two employees from the file and show the new record with only the cost center changed.</p></div><div class="task"><h3>A promotion with history</h3><p><b>Outcome:</b> An employee is promoted with a new job, pay grade and salary from a future date.</p>
+      <details><summary>Hints</summary><ol><li>Take Action → Change Job and Compensation Info.</li><li>Set the effective date and both blocks in one transaction.</li></ol></details>
+      <p class="small"><b>Prove it:</b> Show the new and the previous records in Job History and Compensation history.</p></div></section>
+  <nav class="pager" aria-label="Topic navigation"><a href="fo.html">← Foundation Objects</a><a href="workflow.html">Transactions & Workflows →</a></nav>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>An independent study aid for the SAP Certified – SAP SuccessFactors Employee Central Core and Position Management exam (C_THR81). Not affiliated with or endorsed by SAP. The practice questions are written from public SAP documentation and are not official exam questions.</p>
+    <p>SAP and SAP SuccessFactors are trademarks or registered trademarks of SAP SE in Germany and other countries.</p>
+  </div>
+</footer>
+</body>
+</html>
